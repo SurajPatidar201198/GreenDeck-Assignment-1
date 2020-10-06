@@ -1,0 +1,59 @@
+{% extends "product_register/base.html" %}
+
+{% block content %}
+<div class="jumbotron" style="
+            width: max-content;">
+                <h1  class="display-4">GreenDeck Assignment 1!</h1>
+                <p class="lead font-italic">Python Django project to implement CRUD operations</p>
+                <hr class="my-4">
+<table class="table table-borderless"  >
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>
+                <a href="{% url 'product_insert' %}" class="btn btn-outline-success">
+                    <i class="fas fa-plus">Add New</i>
+                </a>
+            </td>
+            <td>Name</td>
+            <td>Brand_Name</td>
+            <td>Regular_Price_Value</td>
+            <td>Offer_Price_Value</td>
+            <td>Currency</td>
+            <td>Classification_l1</td> 
+            <td>Classification_l2</td>
+            <td>Classification_l3</td>
+            <td>Classification_l4</td>
+            <td>Image_Url</td>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in product_list %}
+          <tr>
+            <td >
+                <a href="{% url 'product_update' product.id %}" class="btn text-secondary px-0">
+                    <i class="far fa-edit fa-lg"></i>
+                </a>
+                <form action="{% url 'product_delete' product.id %}" method='post' class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">
+                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                    </button>
+                </form>
+            </td>
+              <td>{{product.name}}</td>
+              <td>{{product.brand_name}}</td>
+              <td>{{product.regular_price_value}}</td>
+              <td>{{product.offer_price_value}}</td>
+              <td>{{product.currency}}</td>
+              <td>{{product.classification_l1}}</td>
+              <td>{{product.classification_l2}}</td>
+              <td>{{product.classification_l3}}</td>
+              <td>{{product.classification_l4}}</td>
+              <td>{{product.image_url}}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends "product_register/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="jumbotron">
+                <h1  class="display-4">GreenDeck Assignment 1!</h1>
+                <p class="lead font-italic">Python Django project to implement CRUD operations</p>
+                <hr class="my-4">
+<form action="" method="post" autocomplete="off" style="margin: 0% 15% 0% 15%;">
+    {% csrf_token %}
+    <div>
+        <a href="{% url 'product_upload' %}" class="btn btn-primary btn-block btn-lg">
+            <i class="fas fa-stream"></i> Upload File
+        </a>
+        <br>
+    </div>
+    {{form.name|as_crispy_field}}
+    {{form.brand_name|as_crispy_field}}
+    {{form.regular_price_value|as_crispy_field}}
+    {{form.offer_price_value|as_crispy_field}}
+    {{form.currency|as_crispy_field}}
+   
+    <div class="row">
+        <div class="col-md-3">
+            {{form.classification_l1|as_crispy_field}}
+        </div>
+        <div class="col-md-3">
+            {{form.classification_l2|as_crispy_field}}
+        </div>
+        <div class="col-md-3">
+            {{form.classification_l3|as_crispy_field}}
+        </div>
+        <div class="col-md-3">
+            {{form.classification_l4|as_crispy_field}}
+        </div>
+    </div>
+    {{form.image_url|as_crispy_field}}
+    <div class="row">
+        <div class="col md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i> Submit</button>
+        </div>
+        <div class="md-4">
+            <a href="{% url 'product_list' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fas fa-stream"></i> Back To List
+            </a>
+
+        </div>
+    </div>
+    
+</form>
+</div>
+{% endblock content %}
